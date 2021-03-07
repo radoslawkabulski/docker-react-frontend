@@ -7,3 +7,17 @@ before_install:
 
 script:
   - docker run kabulski/frontend npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-1"
+  app: "docker-react-frontend"
+  env: "Dockerreactfrontend-env"
+  bucket_name: "elasticbeanstalk-eu-west-1-116804838700"
+  bucket_path: "docker-react-frontend"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  sercret_access_key:
+    secure: "$AWS_SECRET_KEY"
+
